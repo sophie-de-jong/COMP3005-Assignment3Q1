@@ -7,3 +7,4 @@ cargo run
 ```
 
 ## Video link
+https://youtu.be/s-Uc_zy8VWc

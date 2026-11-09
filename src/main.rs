@@ -31,26 +31,20 @@ async fn main() -> Result<(), sqlx::Error> {
         .connect(&database_url)
         .await?;
 
-    // Call add_student() to insert a new student into the database.
-    add_student(
-        &pool,
-        "Sophie",
-        "de Jong",
-        "SophieDeJong@cmail.carleton.ca",
-        NaiveDate::from_ymd_opt(2023, 9, 6).unwrap(),
-    )
-    .await?;
-
-    // Call update_student_email() to update an existing student's email.
-    update_student_email(&pool, 1, "johndoe67@gmail.com").await?;
-
     // Call get_all_students() to retrieve and display all student records
     // currently stored in the students table.
     get_all_students(&pool).await?;
 
+    // Call add_student() to insert a new student into the database.
+    let enrollment_date = NaiveDate::from_ymd_opt(2023, 9, 6).unwrap();
+    add_student(&pool, "Sophie", "de Jong", "SophieDeJong@cmail.carleton.ca", enrollment_date).await?;
+
+    // Call update_student_email() to update an existing student's email.
+    update_student_email(&pool, 1, "johndoe67@gmail.com").await?;
+
     // Call delete_student() to remove the student with student_id 4
     // from the students table.
-    delete_student(&pool, 4).await?;
+    delete_student(&pool, 13).await?;
 
     Ok(())
 }
